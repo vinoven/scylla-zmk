@@ -1,0 +1,113 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+
+#define DEFAULT 0
+#define SYM 1
+#define NAV 2
+
+/ {
+    combos {
+        compatible = "zmk,combos";
+
+        // Brackets and Braces
+
+        combo_lbkt {
+            timeout-ms = <50>;
+            key-positions = <19 20>;    // I O - left bracket [
+            bindings = <&kp LBKT>;
+        };
+
+        combo_rbkt {
+            timeout-ms = <50>;
+            key-positions = <20 21>;    // O P - right bracket ]
+            bindings = <&kp RBKT>;
+        };
+
+        combo_lbrc {
+            timeout-ms = <50>;
+            key-positions = <31 32>;    // L SEMI - left brace {
+            bindings = <&kp LBRC>;
+        };
+
+        combo_rbrc {
+            timeout-ms = <50>;
+            key-positions = <32 33>;    // SEMI SQT - right brace }
+            bindings = <&kp RBRC>;
+        };
+
+        // Programming essentials
+
+        combo_equal {
+            timeout-ms = <50>;
+            key-positions = <18 19>;    // U I - equals =
+            bindings = <&kp EQUAL>;
+        };
+
+        combo_pipe {
+            timeout-ms = <50>;
+            key-positions = <30 31>;    // K L - pipe |
+            bindings = <&kp PIPE>;
+        };
+
+        home {
+            bindings = <&to 0>;
+            key-positions = <5 0>;
+        };
+
+        gaming {
+            bindings = <&to 3>;
+            key-positions = <0 4>;
+        };
+
+        // TypeScript/C# specific
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <
+&kp ESC    &kp N1  &kp N2  &kp N3    &kp N4     &kp N5        &kp N6      &kp N7    &kp N8     &kp N9   &kp N0    &kp MINUS
+&kp TAB    &kp Q   &kp W   &kp E     &kp R      &kp T         &kp Y       &kp U     &kp I      &kp O    &kp P     &kp LBKT
+&kp LCTRL  &kp A   &kp S   &kp D     &kp F      &kp G         &kp H       &kp J     &kp K      &kp L    &kp SEMI  &kp SQT
+&mo NAV    &kp Z   &kp X   &kp C     &kp V      &kp B         &kp N       &kp M     &kp COMMA  &kp DOT  &kp FSLH  &mo SYM
+                           &kp BSPC  &kp SPACE  &mo SYM       &mo NAV     &kp RET   &kp DEL
+                                     &kp LGUI   &kp LSHIFT    &kp RSHIFT  &kp RALT 
+            >;
+        };
+
+        sym_layer {
+            bindings = <
+&kp GRAVE  &kp EXCL  &kp AT    &kp HASH  &kp DLLR  &kp PRCNT    &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR   &kp RPAR   &kp PLUS
+&trans     &kp N1    &kp N2    &kp N3    &kp N4    &kp N5       &kp N6     &kp N7     &kp N8     &kp N9     &kp N0     &kp EQUAL
+&trans     &kp LBRC  &kp RBRC  &kp LPAR  &kp RPAR  &kp PIPE     &kp UNDER  &kp MINUS  &kp PLUS   &kp EQUAL  &kp COLON  &kp DQT
+&trans     &kp LBKT  &kp RBKT  &kp LT    &kp GT    &kp BSLH     &kp CARET  &kp TILDE  &kp COMMA  &kp DOT    &kp QMARK  &trans
+                               &trans    &trans    &trans       &trans     &trans     &trans
+                                         &trans    &trans       &trans     &trans
+            >;
+        };
+
+        nav_layer {
+            bindings = <
+&bt BT_CLR    &kp F1     &kp F2     &kp F3     &kp F4         &kp F5           &kp F6    &kp F7          &kp F8        &kp F9       &kp F10  &bt BT_CLR
+&bt BT_SEL 0  &kp LC(A)  &none      &none      &kp LA(GRAVE)  &kp LA(TILDE)    &kp HOME  &kp PG_DN       &kp UP_ARROW  &kp PAGE_UP  &kp F11  &bt BT_SEL 0
+&bt BT_SEL 1  &kp HOME   &none      &none      &none          &none            &kp END   &kp LEFT_ARROW  &kp DOWN      &kp RIGHT    &kp F12  &bt BT_SEL 1
+&bt BT_SEL 2  &kp LC(Z)  &kp LC(X)  &kp LC(C)  &kp LC(V)      &kp LC(Y)        &none     &none           &none         &none        &none    &bt BT_SEL 2
+                                    &trans     &trans         &trans           &trans    &trans          &trans
+                                               &trans         &trans           &trans    &trans
+            >;
+        };
+
+        gaming_layer {
+            bindings = <
+&trans  &trans          &trans  &trans  &trans        &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans          &trans  &kp W   &kp E         &kp R     &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &kp LEFT_SHIFT  &kp A   &kp S   &kp D         &kp F     &trans  &trans  &trans  &trans  &trans  &trans
+&kp I   &trans          &trans  &trans  &trans        &trans    &trans  &trans  &trans  &trans  &trans  &trans
+                                &trans  &trans        &trans    &trans  &trans  &trans
+                                        &kp LEFT_ALT  &trans    &trans  &trans
+            >;
+        };
+    };
+};
